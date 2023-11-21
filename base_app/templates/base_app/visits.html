@@ -1,0 +1,9 @@
+{% extends 'base_app/base_template.html' %}
+{% block content %}
+    {% for visit in visits %}
+        <p>
+            [{{ visit.id }}] {{ visit.start_date|date:'d.m.Y H:i' }} - {{ visit.end_date|date:'d.m.Y H:i' }}
+            <a href="{% url 'assign_visit' visit.id %}">Przypisz wizytę</a>
+        </p>
+    {% endfor %}
+{% endblock content %}
