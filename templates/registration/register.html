@@ -1,0 +1,42 @@
+{% extends 'base_app/base_template.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="list-group list-group-horizontal">
+                            <button class="list-group-item list-group-item-action active text-center change-user-type"
+                                    data-user_type="patient">
+                                Zarejestruj jako pacjent
+                            </button>
+                            <button class="list-group-item list-group-item-action text-center change-user-type"
+                                    data-user_type="rehabilitator">
+                                Zarejestruj jako rehabilitant
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button class="btn btn-success" type="submit">Zarejestruj</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+    <script type="text/javascript">
+        $('.change-user-type').each(function (e) {
+            $(this).click(function (e) {
+                $('.change-user-type').removeClass('active');
+                $(this).addClass('active');
+                $('#id_register_as').val($(this).data()['user_type']);
+            });
+        });
+    </script>
+{% endblock scripts %}

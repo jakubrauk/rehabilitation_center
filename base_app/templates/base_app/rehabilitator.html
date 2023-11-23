@@ -1,0 +1,9 @@
+{% extends 'base_app/base_template.html' %}
+{% block content %}
+    {% for rehabilitator in rehabilitators %}
+        <p>
+            Rehabilitant: {{ rehabilitator.user }}
+            Opis: {{ rehabilitator.description }}
+        </p>
+    {% endfor %}
+{% endblock content %}

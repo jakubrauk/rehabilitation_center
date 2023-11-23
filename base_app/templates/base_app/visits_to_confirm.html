@@ -1,0 +1,21 @@
+{% extends 'base_app/base_template.html' %}
+{% block content %}
+    <h1>Wizyty do potwierdzenia</h1>
+
+    <ul>
+        {% for visit in visits %}
+            <li>
+                Pacjent: {{ visit.patient }}
+                Dane wizyty:
+                Data: {{ visit.date }}
+                Godzina rozpoczęcia: {{ visit.start_date }}
+                Godzina zakończenia: {{ visit.end_date }}
+                <!-- Dodaj więcej informacji o wizycie, jeśli to konieczne -->
+                <form method="post" action="{% url 'confirm_visit' visit.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Potwierdź">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

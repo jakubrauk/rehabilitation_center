@@ -1,0 +1,10 @@
+{% extends 'base_app/base_template.html' %}
+{% block content %}
+    <h1>Twój profil</h1>
+    Imię: {{ user }}
+    <form method="post" action="{% url 'add_hospital_record' user.patient.id %}">
+        {% csrf_token %}
+        <input type="text" name="hospital_record" value="{{ user.patient.description }}">
+        <input type="submit" value="Zapisz">
+    </form>
+{% endblock content %}

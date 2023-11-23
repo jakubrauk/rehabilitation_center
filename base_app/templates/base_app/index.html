@@ -1,6 +1,11 @@
 {% extends 'base_app/base_template.html' %}
 {% block content %}
-    <p>{{ message }}</p>
-    <a href="{% url 'create_visit' %}">Dodaj wizytę</a>
-    <a href="{% url 'visits' %}">Zobacz wszystkie wizyty</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p>{{ message }}</p>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
+

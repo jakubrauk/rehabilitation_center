@@ -1,0 +1,26 @@
+{% extends 'base_app/base_template.html' %}
+{% block content %}
+    <h1>Odbyte wizyty</h1>
+
+    <ul>
+        {% for visit in visits %}
+            <li>
+                Dane wizyty:
+                Data: {{ visit.date }}
+                Godzina rozpoczęcia: {{ visit.start_date }}
+                Godzina zakończenia: {{ visit.end_date }}
+                Dodatkowe informacje: {{ visit.description }}
+                Rehabilitant:
+                Imię: {{ visit.rehabilitator.user}}
+                Twoja opinia: {{ visit.patient_feedback }}
+                {% if not visit.patient_feedback %}
+                    <form method="post" action="{% url 'add_feedback' visit.id %}">
+                    {% csrf_token %}
+                        <input type="text" name="feedback">
+                    <input type="submit" value="Dodaj opinię">
+                </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

@@ -10,12 +10,12 @@ python manage.py runserver
 
 ### TODO
 
-- [ ] Logowanie/założenie konta - Jakub
+- [x] Logowanie/założenie konta
 - [ ] Rehabilitanci mogą dodawać/modyfikować/usuwać godziny dostępności
-- [ ] Pacjent może przeglądać listę rehabilitantów
-- [ ] Pacjent może uzupełnić historię swojego leczenia
+- [x] Pacjent może przeglądać listę rehabilitantów
+- [x] Pacjent może uzupełnić historię swojego leczenia
 - [ ] Rehabilitant może przeglądać historię leczenia pacjenta 
 - [ ] Rehabilitant potwierdza/odrzuca propozycj wizyty
-- [ ] Pacjent wybiera dostępny termin wizyty 
-- [ ] Pacjent może przeglądać historię swojego leczenia
-- [ ] Pacjent może ocenić wizyte
+- [x] Pacjent wybiera dostępny termin wizyty 
+- [x] Pacjent może przeglądać historię swojego leczenia
+- [x] Pacjent może ocenić wizyte

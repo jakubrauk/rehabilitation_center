@@ -1,0 +1,51 @@
+{% extends 'base_app/base_template.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                Formularz logowania
+                            </div>
+                            <div class="col">
+                                <div class="float-right">
+                                    <div class="d-grid">
+                                        <a href="{% url 'register' %}" class="btn btn-primary float-right btn-sm">Nie
+                                            masz konta? Zarejestruj się</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% if form.errors %}
+                            <p>Nazwa użytkownika oraz hasło są niepoprawne.</p>
+                        {% endif %}
+
+                        {% if next %}
+                            {% if user.is_authenticated %}
+                                <p>Twoje konto nie posiada uprawnień do przeglądania tej strony. Zaloguj się na
+                                    odpowiednie konto z uprawnieniami, aby ją wyświetlić</p>
+                            {% else %}
+                                <p>Zaloguj się żeby zobaczyć tą stronę</p>
+                            {% endif %}
+                        {% endif %}
+
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button class="btn btn-success" type="submit">Zaloguj</button>
+                            <input type="hidden" name="next" value="{{ next }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+{#    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
+{% endblock content %}
