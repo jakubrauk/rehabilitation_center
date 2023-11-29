@@ -1,6 +1,6 @@
-{% extends 'base_app/base_template.html' %}
+{% extends 'base_app/minimal_base.html' %}
 {% load crispy_forms_tags %}
-{% block content %}
+{% block base_content %}
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-{% endblock content %}
+{% endblock base_content %}
 {% block scripts %}
     <script type="text/javascript">
         $('.change-user-type').each(function (e) {

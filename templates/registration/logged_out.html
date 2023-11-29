@@ -1,5 +1,5 @@
-{% extends 'base_app/base_template.html' %}
-{% block content %}
+{% extends 'base_app/minimal_base.html' %}
+{% block base_content %}
     <p>Zostałeś wylogowany.</p>
     <a href="{% url 'login' %}">Zaloguj się ponownie</a>
-{% endblock content %}
+{% endblock base_content %}

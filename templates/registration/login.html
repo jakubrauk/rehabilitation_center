@@ -1,6 +1,6 @@
-{% extends 'base_app/base_template.html' %}
+{% extends 'base_app/minimal_base.html' %}
 {% load crispy_forms_tags %}
-{% block content %}
+{% block base_content %}
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -48,4 +48,4 @@
 
     {# Assumes you setup the password_reset view in your URLconf #}
 {#    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
-{% endblock content %}
+{% endblock base_content %}
