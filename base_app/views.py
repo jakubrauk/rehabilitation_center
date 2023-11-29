@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from base_app.forms import VisitForm, CustomAuthenticationForm, CustomUserCreationForm
@@ -35,6 +35,7 @@ def index(request):
 
 
 @login_required
+@user_passes_test(lambda u: hasattr(u, 'rehabilitator'))
 def create_visit(request):
     form = VisitForm(initial={'rehabilitator': request.user.rehabilitator})
     if request.method == 'POST':
@@ -52,6 +53,7 @@ def create_visit(request):
 
 
 @login_required
+@user_passes_test(lambda u: hasattr(u, 'patient'))
 def visits(request):
     context = {
         'visits': Visit.objects.filter(patient__isnull=True),
@@ -61,6 +63,7 @@ def visits(request):
 
 
 @login_required
+@user_passes_test(lambda u: hasattr(u, 'rehabilitator'))
 def show_unconfirmed_visits(request):
     context = {
         'visits': Visit.objects.filter(patient__visit__isnull=False, accepted=False),
@@ -70,14 +73,16 @@ def show_unconfirmed_visits(request):
 
 
 @login_required
+@user_passes_test(lambda u: hasattr(u, 'patient'))
 def assign_visit(request, pk):
     visit = Visit.objects.get(id=pk)
-    visit.patient = Patient.objects.get(user=request.user)
+    visit.patient = request.user.patient
     visit.save()
     return redirect('visits')
 
 
 @login_required
+@user_passes_test(lambda u: hasattr(u, 'rehabilitator'))
 def confirm_visit(request, pk):
     visit = Visit.objects.get(id=pk)
     visit.accepted = True
@@ -96,6 +101,7 @@ def show_visits_history(request):
 
 
 @login_required
+@user_passes_test(lambda u: hasattr(u, 'patient'))
 def add_feedback(request, pk):
     if request.method == 'POST':
         visit = Visit.objects.get(id=pk)

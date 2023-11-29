@@ -29,6 +29,8 @@
                             {% if user.is_authenticated %}
                                 <p>Twoje konto nie posiada uprawnień do przeglądania tej strony. Zaloguj się na
                                     odpowiednie konto z uprawnieniami, aby ją wyświetlić</p>
+
+                                <a href="{% url 'index' %}" class="btn btn-primary">Lub powróć na stronę główną</a>
                             {% else %}
                                 <p>Zaloguj się żeby zobaczyć tą stronę</p>
                             {% endif %}
